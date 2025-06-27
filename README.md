@@ -50,7 +50,7 @@ No installation required! Simply open `index.html` in any modern browser.
 
 For local development:
 ```bash
-git clone https://github.com/yourusername/chemistry-lab.git
+git clone https://github.com/desivar/mychemistrylab
 cd chemistry-lab
 open index.html
 ## Desire Vargas
