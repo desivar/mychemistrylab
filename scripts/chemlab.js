@@ -426,11 +426,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const elemCl = findElement('Cl');
             const elemN = findElement('N');
 
-            // Water: 2H + O → H₂O
-            if (elemH && elemO && elemH.quantity >= 2 && elemO.quantity >= 1) {
-                return createReaction('water', '2H + O → H₂O', sortedElements, 
-                    Math.min(Math.floor(elemH.quantity / 2), elemO.quantity));
-            }
+          // Hydrogen Peroxide: 2H + 2O → H₂O₂
+if (elemH && elemO && elemH.quantity >= 2 && elemO.quantity >= 2) {
+    return createReaction('hydrogen-peroxide', '2H + 2O → H₂O₂', sortedElements,
+        Math.min(Math.floor(elemH.quantity / 2), Math.floor(elemO.quantity / 2)));
+}
+// Water: 2H + O → H₂O (This check now comes second)
+else if (elemH && elemO && elemH.quantity >= 2 && elemO.quantity >= 1) {
+    return createReaction('water', '2H + O → H₂O', sortedElements,
+        Math.min(Math.floor(elemH.quantity / 2), elemO.quantity));
+}
             // Salt: Na + Cl → NaCl
             else if (elemNa && elemCl && elemNa.quantity >= 1 && elemCl.quantity >= 1) {
                 return createReaction('salt', 'Na + Cl → NaCl', sortedElements,
@@ -451,11 +456,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 return createReaction('methane', 'C + 4H → CH₄', sortedElements,
                     Math.min(elemC.quantity, Math.floor(elemH.quantity / 4)));
             }
-            // Hydrogen Peroxide: 2H + 2O → H₂O₂
-            else if (elemH && elemO && elemH.quantity >= 2 && elemO.quantity >= 2) {
-                return createReaction('hydrogen-peroxide', '2H + 2O → H₂O₂', sortedElements,
-                    Math.min(Math.floor(elemH.quantity / 2), Math.floor(elemO.quantity / 2)));
-            }
+         
             // Sodium Hydroxide: Na + O + H → NaOH
             else if (elemNa && elemO && elemH && elemNa.quantity >= 1 && elemO.quantity >= 1 && elemH.quantity >= 1) {
                 return createReaction('sodium-hydroxide', 'Na + O + H → NaOH', sortedElements,
